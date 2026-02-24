@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Seattle Transit Equity Dashboard</title>
+
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <!-- charts -->
+    <link rel="stylesheet" href="css/c3.min.css">
+    <script src="js/d3.js"></script>
+    <script src="js/c3.min.js"></script>
+
+    <!-- custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- sidebar -->
+    <div id="info">
+
+        <div id="title">
+            Seattle Transit Equity Dashboard
+            <span>
+
+                <span id="reset">
+                    <a href="#">Reset</a>
+                </span>
+
+                <a href="about.html">About</a>
+
+                <a href="https://github.com/sjg2202/transit-equity-dashboard" target="_blank">
+                    <i class="bi bi-github"></i>
+                </a>
+
+            </span>
+        </div>
+
+        <!-- KPI -->
+        <div id="count" class="card">
+            <h5>Selected Census Tract Metrics</h5>
+
+            <div class="kpi-row">
+
+                <div class="kpi">
+                    <div class="label">Transit Stops</div>
+                    <div class="value">
+                        <span id="stop-count">0</span>
+                    </div>
+                </div>
+
+                <div class="kpi">
+                    <div class="label">Median Income</div>
+                    <div class="value">
+                        <span id="median-income">0</span>
+                    </div>
+                </div>
+
+                <div class="kpi">
+                    <div class="label">% No Vehicle</div>
+                    <div class="value">
+                        <span id="pct-no-vehicle">0</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- chart -->
+        <div id="equity-chart"></div>
+
+        <!-- footer -->
+        <div id="footer">
+        Transit Equity Dashboard — Seattle | Data: King County Metro, ACS Census        
+        </div>
+
+    </div>
+
+    <!-- map -->
+    <div id="map"></div>
+
+    <!-- legend: update later!!!-->
+    <div id="legend">
+
+    <div class="legend-title">Legend</div>
+
+    <div style="margin-bottom:6px;">Transit Layers</div>
+
+    <div class="legend-row">
+        <span class="legend-circle small"></span>
+        <span>Low</span>
+    </div>
+
+    <div class="legend-row">
+        <span class="legend-circle medium"></span>
+        <span>Medium</span>
+    </div>
+
+    <div class="legend-row">
+        <span class="legend-circle large"></span>
+        <span>High</span>
+    </div>
+
+    <div style="margin-top:8px;color:#6b7280;font-size:11px;">
+        Census tract boundaries shown
+    </div>
+
+    </div>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
