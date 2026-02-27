@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Transit Equity Dashboard - Seattle</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web|Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    
+    <link href="css/c3.min.css" rel="stylesheet">
+    <script src="js/d3.js" charset="utf-8"></script>
+    <script src="js/c3.min.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div id="info">
+        <div id="title">
+            Transit Equity Dashboard
+            <span><a href="#" target="_blank"><i class="bi bi-github"></i></a></span>
+        </div>
+        <div id="count" class="card">
+            <h5 id="desc">Census Tracts in View</h5>
+            <p id="tract-count">0</p>
+        </div>
+        <div id="equity-chart"></div>
+
+        <div id="footer">
+            <p>This smart dashboard visualizes transit accessibility across Seattle.</p>
+            <p>The chart dynamically updates to show the distribution of transit need based on the current map viewport. Data is sourced from the ACS 2024 5-Year Estimates.</p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="legend">
+        <div class="legend-title">% Households with No Vehicles</div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #f1eef6;"></div>
+            <span>0 - 5% (Low Need)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #bdc9e1;"></div>
+            <span>5 - 15%</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #74a9cf;"></div>
+            <span>15 - 30%</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #0570b0;"></div>
+            <span>30%+ (High Need)</span>
+        </div>
+    </div>
+
+    <script src="js/charts.js"></script>
+</body>
+</html>

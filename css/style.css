@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Titillium Web', serif;
+}
+
 #map {
   position: absolute;
   top: 0;
@@ -5,7 +11,68 @@
   width: 100%;
 }
 
-body {
+#info {
+  z-index: 1000;
+  position: absolute;
+  width: 320px;
+  top: 0;
+  bottom: 0; /* Added so the sidebar stretches to the bottom */
+  left: 0;
+  padding: 30px 20px; 
+  background: #2b2b2b;
+  color: white;
+  overflow-y: auto; 
+}
+
+#info a {
+  color: lightgray;
+  text-decoration: none;
+}
+
+#info a:hover {
+  color: white;
+  opacity: 0.8;
+}
+
+#title {
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 25px;
+}
+
+#title span {
+  font-size: 14px;
+  float: right;
+  margin-left: 10px;
+}
+
+#desc {
+  text-align: center;
+  color: lightgray;
+  font-size: medium;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#tract-count {
   margin: 0;
-  padding: 0;
+  text-align: center;
+  color: #74a9cf;
+  font-size: 40px;
+}
+
+#footer p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: lightgray;
+  margin-top: 20px;
+}
+
+#legend {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: #2b2b2b;
+  padding: 15px 20px;
 }
