@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Titillium Web', serif;
+  font-family: 'Inter', sans-serif;
 }
 
 #map {
@@ -11,12 +11,13 @@ body {
   width: 100%;
 }
 
+/* sidebar */
 #info {
   z-index: 1000;
   position: absolute;
   width: 320px;
   top: 0;
-  bottom: 0; /* Added so the sidebar stretches to the bottom */
+  bottom: 0;
   left: 0;
   padding: 30px 20px; 
   background: #2b2b2b;
@@ -36,7 +37,7 @@ body {
 
 #title {
   font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Inter', sans-serif;
   margin-bottom: 25px;
 }
 
@@ -62,6 +63,11 @@ body {
   font-size: 40px;
 }
 
+/* sidebar footer */
+#footer {
+  margin-top: 20px;
+}
+
 #footer p {
   font-size: 13px;
   line-height: 1.5;
@@ -69,10 +75,125 @@ body {
   margin-top: 20px;
 }
 
+/* legend */
+
 #legend {
   position: absolute;
   bottom: 30px;
   right: 30px;
   background: #2b2b2b;
-  padding: 15px 20px;
+  color: white;
+  padding: 15px 18px;
+  border-radius: 10px;
+  width: 230px;
+  font-family: 'Inter', sans-serif;
+  z-index: 999;
+}
+
+.legend-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: lightgray;
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.legend-note {
+  font-size: 12px;
+  color: lightgray;
+  margin-top: 10px;
+}
+
+/* map page footer */
+.footer {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  font-size: 12px;
+  color: #374151;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 6px 10px;
+  border-radius: 6px;
+  z-index: 999;
+}
+
+/* popup */
+.mapboxgl-popup-content {
+  font-family: 'Inter', sans-serif;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.popup-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.popup-row {
+  font-size: 13px;
+}
+
+/* reset button */
+.reset-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #374151;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.reset-btn:hover {
+  background: #4b5563;
+}
+
+/* filters */
+#filters h5 { margin: 0 0 10px 0; }
+
+.filter-row { margin-bottom: 10px; }
+
+.filter-row label {
+  display: block;
+  font-size: 12px;
+  color: lightgray;
+  margin-bottom: 4px;
+}
+
+.filter-row select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #1f1f1f;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 0 0;
+  font-size: 13px;
+  color: lightgray;
 }

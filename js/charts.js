@@ -3,8 +3,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoib2Nhc3RpIiwiYSI6ImNtaGJlcHR0bzBkbHEyam9hZjUxd
 
 const map = new mapboxgl.Map ({
     container: 'map',
-    // Dark basemap
-    style: 'mapbox://styles/mapbox/dark-v11', 
+    // Light basemap
+    style: 'mapbox://styles/mapbox/light-v11', 
     zoom: 10.5,
     minZoom: 9, // Prevents user from zooming out too far.
     center: [-122.3321, 47.6062] // Centered on Seattle

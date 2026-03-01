@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Mapbox -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -36,10 +36,6 @@
             Seattle Transit Equity Dashboard
             <span>
 
-                <span id="reset">
-                    <a href="#">Reset</a>
-                </span>
-
                 <a href="about.html">About</a>
 
                 <a href="https://github.com/sjg2202/transit-equity-dashboard" target="_blank">
@@ -48,6 +44,25 @@
 
             </span>
         </div>
+
+        <!-- filters !update!!!!-->
+        <div class="card" id="filters">
+        <h5>Filters</h5>
+
+        <div class="filter-row">
+            <label for="layerSelect">Choropleth layer</label>
+            <select id="layerSelect">
+            <option value="income" selected>Median income</option>
+            <option value="car">% no vehicle</option>
+            <option value="stops">Stop density</option>
+            </select>
+        </div>
+
+        <label class="checkbox-row">
+            <input type="checkbox" id="toggleStops" checked>
+            Show transit stops
+        </label>
+       </div>
 
         <!-- KPI -->
         <div id="count" class="card">
@@ -117,6 +132,8 @@
     <div style="margin-top:8px;color:#6b7280;font-size:11px;">
         Census tract boundaries shown
     </div>
+
+    <button id="reset" class="reset-btn">Reset Map</button>
 
     </div>
 
