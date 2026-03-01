@@ -29,15 +29,12 @@ map.addControl(
 map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
 // reset button
-var resetEl = document.getElementById('reset');
-if (resetEl) {
-  resetEl.onclick = function () {
+document.getElementById('reset').onclick = function () {
     map.flyTo({
-    center: [-122.3321, 47.6062],
-    zoom: 10.5
+        center: [-122.335167, 47.608013],
+        zoom: 11
     });
-  };
-}
+};
 
 map.on('load', function () {
   // load income geojson
