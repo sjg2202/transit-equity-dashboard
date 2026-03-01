@@ -73,15 +73,14 @@ map.on('load', () => {
 
     if (popup) popup.remove();
     popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: false })
-      .setLngLat(e.lngLat)
-      .setHTML(`
-        <div style="font-family:'Inter',sans-serif; font-size:13px; line-height:1.6;">
-          <strong>Census Tract</strong><br>
-          GEOID: ${geoid}<br>
-          Transit Stops: <strong>${count}</strong>
-        </div>
-      `)
-      .addTo(map);
+    .setLngLat(e.lngLat)
+    .setHTML(`
+      <div style="font-family:'Inter',sans-serif; font-size:13px; line-height:1.6;">
+        <strong>${props.NAME || 'Census Tract'}</strong><br>
+        Transit Stops: <strong>${count}</strong>
+      </div>
+    `)
+    .addTo(map);
   });
 
   // Hover cursor
