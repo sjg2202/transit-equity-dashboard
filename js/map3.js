@@ -24,7 +24,7 @@ map.addLayer({
     'paint': {
         'fill-color': [
             'step',
-            ['get', 'Pct_No_Vehicle'],
+            ['get', 'KingCounty_Vehicle_Access_Clean_Households_No_Vehicle'],
                '#E3BBFC' , // 0 - 9
              20, '#BF63F8', // 10-20
              30, '#9B0BFB', // 20-30
