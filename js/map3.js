@@ -11,17 +11,26 @@ const map = new mapboxgl.Map({
 
 let popup = null;
 
-map.on('load', () => {
-    map.addSource('carownership', {
-    type: 'geojson',
-    data: 'assets/census_tract_with_vehicles.geojson'
-})
+// map.on('load', () => {
+
+
+async function geojsonFetch() {
+    let response = await fetch('assets/census_tract_with_vehicles.geojson');
+    let carownership = await response.json();
+
+    map.on('load', function loaddata() {
+     map.addSource('carownership', {
+        type: 'geojson',
+        data: carownership
+    })
+
+// })
 
 map.addLayer({
-    id : 'carownc',
-    type : 'fill',
-    source: 'carownership',
-    paint : {
+    'id' : 'carownc',
+    'type' : 'fill',
+    'source': 'carownership',
+    'paint' : {
         'fill-color': [
             'step',
             ['get', 'KingCounty_Vehicle_Access_Clean_Pct_No_Vehicle'],
@@ -39,6 +48,7 @@ map.addLayer({
 
 });
 
+
 map.on('click', 'carownc', (e) => {
    const prop = e.features[0].properties;
    console.log(prop.KingCounty_Vehicle_Access_Clean_Pct_No_Vehicle)
@@ -49,9 +59,11 @@ map.on('click', 'carownc', (e) => {
     .setLngLat(e.lngLat)
     .setHTML(`<div> <strong> ${prop.NAME} <strong><br> Percent of Zero Vehicles: ${vechperc} </strong> </div>`)
     .addTo(map)
-})
-
 });
+})
+};
+
+geojsonFetch();
 
 
 
