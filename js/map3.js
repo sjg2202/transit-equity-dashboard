@@ -10,37 +10,39 @@ const map = new mapboxgl.Map({
 });
 
 let popup = null;
-map.on('load', function(){
+
+map.on('load', () => {
     map.addSource('carownership', {
     type: 'geojson',
     data: 'assets/census_tract_with_vehicles.geojson'
 })
 
-
 map.addLayer({
-    'id': 'carownc',
-    'type' : 'fill',
-    'source': 'carownership',
-    'paint': {
+    id : 'carownc',
+    type : 'fill',
+    source: 'carownership',
+    paint : {
         'fill-color': [
             'step',
-            ['get', 'KingCounty_Vehicle_Access_Clean_Households_No_Vehicle'],
+            ['get', 'KingCounty_Vehicle_Access_Clean_Pct_No_Vehicle'],
                '#E3BBFC' , // 0 - 9
-             20, '#BF63F8', // 10-20
-             30, '#9B0BFB', // 20-30
+             10, '#BF63F8', // 10-20
+             20, '#9B0BFB', // 20-49
              50, '#63079C',// 50 - 69
-             70, '#470570' // 70- 80.6
+             80, '#470570' // 70- 80
         ],
          'fill-outline-color': '#BBBBBB',
-        'fill-opacity': 0.7,
+        'fill-opacity': 0.9,
+
     }
 
-})
+
+});
 
 map.on('click', 'carownc', (e) => {
    const prop = e.features[0].properties;
-   console.log(prop.KingCounty_Vehicle_Access_Clean_Households_No_Vehicle)
-   const vechperc = prop.KingCounty_Vehicle_Access_Clean_Households_No_Vehicle != undefined ? prop.KingCounty_Vehicle_Access_Clean_Households_No_Vehicle: 'N/A';
+   console.log(prop.KingCounty_Vehicle_Access_Clean_Pct_No_Vehicle)
+   const vechperc = prop.KingCounty_Vehicle_Access_Clean_Pct_No_Vehicle != undefined ? prop.KingCounty_Vehicle_Access_Clean_Pct_No_Vehicle: 'N/A';
 
     if (popup) popup.remove();
     popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: false})
@@ -52,6 +54,4 @@ map.on('click', 'carownc', (e) => {
 });
 
 
-
-// })
 
