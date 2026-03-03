@@ -36,3 +36,39 @@ if (layerSelect) {
 
   });
 }
+
+    // C3 Bar Chart
+// Builds the chart in the sidebar, feeding it dummy data (zeros) for now
+// until we write function to extract live data from the map.
+let chart = c3.generate({
+    bindto: '#equity-chart',
+    data: {
+        columns: [
+            ['Low Need (<5% No Car)', 0],
+            ['Moderate Need (5-15%)', 0],
+            ['High Need (15-30%)', 0],
+            ['Critical Need (30%+)', 0] 
+        ],
+        type: 'bar', // type of bar chart
+        colors: {
+            // Matches the chart colors exactly to the map layer colors
+            // Added # to all hex codes
+            'Low Need (<5% No Car)': '#f1eef6',
+            'Moderate Need (5-15%)': '#bdc9e1',
+            'High Need (15-30%)': '#74a9cf',
+            'Critical Need (30%+)': '#0570b0'
+        }
+    },
+    axis: {
+        x: { show: false },   // hides bottom axis to save space
+        y: {
+            label: {
+                text: 'Number of Tracts',   // Labels the vertical axis
+                position: 'outer-middle'
+            }
+        }
+    },
+    legend: {
+        position: 'bottom' // Moves chart key to the bottom
+    }
+});
