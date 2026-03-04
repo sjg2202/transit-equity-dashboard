@@ -1,12 +1,11 @@
 // Map 3 — Car Ownership Rate (ACS 2024 5-year, B08201)
-// Shayla token
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2d1aWViIiwiYSI6ImNtbTc3ZDM1azBwZXAyeXB6YmdsbWR0bzQifQ.drU3rQYvOmXPEraVrmIW6Q';
 
 // Quintile breaks
 var breaks = [67.29, 84.57, 89.98, 94.90];
 
 // colors (light -> dark)
-var colors = ['#f7fcfd', '#ccece6', '#66c2a4', '#2ca25f', '#006d2c'];
+var colors = ['#E3BBFC', '#BF63F8', '#9B0BFB', '#63079C' , '#470570' ];
 
 var CAR_FIELD = 'Car_Ownership_Rate';
 
