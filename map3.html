@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Map3-Car ownership Rate by Census Tract</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-  <link href = "css/style.css" rel = "stylesheet">
+<meta charset="UTF-8">
+<title>Map 3 - Car Ownership Rate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+<link rel="stylesheet" href="css/style.css" />
 </head>
-  <body>
-    <div id = "map"></div>
-    <div id = "legend">
-      <div class = "legend-title">No Vechicle Households per Census Tract</div>
-      <div class = "legend-row">
-        <span class="legend-swatch" style="background: '#E3BBFC';"></span>
-        <span>0-9</span>
-      </div>
-      <div class = "legend-row">
-        <span class="legend-swatch" style="background: '#BF63F8';"></span>
-         <span>10-19</span>
-      </div>
-      </div>
-      <div class = "legend-row">
-        <span class = "legend-swatch" style="background: '#9B0BFB';"></span>
-        <span>20-49</span>
-      </div>
-      <div class = "legend-row">
-        <span class = "legend-swatch" style="background: '#63079C';"></span>
-        <span>50-69</span>
-      </div>
-      <div class = "legend-row">
-        <span class = "legend-swatch" style="background: '#470570';"></span>
-        <span>70-80</span>
-      </div>
-    </div>
+<body>
+<div id="map"></div>
+<div id="legend">
+  <div class="legend-title">Car Ownership Rate by Census Tract</div>
+  <div class="legend-row">
+    <span class="legend-swatch" style="background:#f7fcfd;"></span>
+    <span>19% – 67%</span>
+  </div>
+  <div class="legend-row">
+    <span class="legend-swatch" style="background:#ccece6;"></span>
+    <span>67% – 85%</span>
+  </div>
+  <div class="legend-row">
+    <span class="legend-swatch" style="background:#66c2a4;"></span>
+    <span>85% – 90%</span>
+  </div>
+  <div class="legend-row">
+    <span class="legend-swatch" style="background:#2ca25f;"></span>
+    <span>90% – 95%</span>
+  </div>
+  <div class="legend-row">
+    <span class="legend-swatch" style="background:#006d2c;"></span>
+    <span>95% – 100%</span>
+  </div>
+  <div class="legend-note">Click a tract to view details.</div>
+  <button id="reset" class="reset-btn">Reset Map</button>
+</div>
+<div class="footer">
+  Data: ACS 2024 5-Year Estimates (B08201) (Vehicle Availability). Layer: King County census tracts joined in QGIS.
+</div>
 
-    <script src="js/map3.js"></script>
-  </body>
+<script src="js/map3.js"></script>
+</body>
 </html>
