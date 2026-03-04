@@ -42,10 +42,7 @@ map.addLayer({
         ],
          'fill-outline-color': '#BBBBBB',
         'fill-opacity': 0.9,
-
     }
-
-
 });
 
 
