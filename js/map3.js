@@ -4,7 +4,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2d1aWViIiwiYSI6ImNtbTc3ZDM1azBwZXAyeXB6Ymdsb
 // Quintile breaks
 var breaks = [67.29, 84.57, 89.98, 94.90];
 
-// colors (light -> dark)
+// Scale of Colors
 var colors = ['#E3BBFC', '#BF63F8', '#9B0BFB', '#63079C' , '#470570' ];
 
 var CAR_FIELD = 'Car_Ownership_Rate';
@@ -57,19 +57,9 @@ map.on('load', function () {
           [breaks[3],  colors[4]]
         ]
       },
-      'fill-opacity': 0.75
-    }
-  });
+      'fill-outline-color': '#494848',
+      'fill-opacity': 0.80
 
-  // outline
-  map.addLayer({
-    id: 'car-outline',
-    type: 'line',
-    source: 'car-ownership',
-    paint: {
-      'line-color': '#111827',
-      'line-opacity': 0.25,
-      'line-width': 0.7
     }
   });
 
@@ -82,7 +72,7 @@ map.on('load', function () {
     map.getCanvas().style.cursor = '';
   });
 
-  // popup on click
+  // popup
   map.on('click', 'car-fill', function (e) {
     var props = e.features[0].properties;
 
@@ -91,12 +81,12 @@ map.on('load', function () {
 
     var rate = Number(props[CAR_FIELD]);
     var noVehicle = Number(props['Pct_No_Vehicle']);
-    var totalHH = Number(props['Total_Households']);
+    // var totalHH = Number(props['Total_Households']);
     var noVehicleHH = Number(props['Households_No_Vehicle']);
 
     var rateText = isNaN(rate) ? 'N/A' : rate.toFixed(1) + '%';
     var noVehicleText = isNaN(noVehicle) ? 'N/A' : noVehicle.toFixed(1) + '%';
-    var totalText = isNaN(totalHH) ? 'N/A' : totalHH.toLocaleString();
+    // var totalText = isNaN(totalHH) ? 'N/A' : totalHH.toLocaleString();
     var noVehicleHHText = isNaN(noVehicleHH) ? 'N/A' : noVehicleHH.toLocaleString();
 
     new mapboxgl.Popup()
@@ -105,7 +95,7 @@ map.on('load', function () {
         '<b>' + tractName + '</b><br>' +
         'Car ownership rate: ' + rateText + '<br>' +
         'No vehicle: ' + noVehicleText + '<br>' +
-        'Total households: ' + totalText + '<br>' +
+        // 'Total households: ' + totalText + '<br>' +
         'Zero-vehicle households: ' + noVehicleHHText
       )
       .addTo(map);
