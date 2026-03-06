@@ -63,15 +63,6 @@ map.on('load', function () {
     }
   });
 
-  // cursor
-  map.on('mouseenter', 'car-fill', function () {
-    map.getCanvas().style.cursor = 'pointer';
-  });
-
-  map.on('mouseleave', 'car-fill', function () {
-    map.getCanvas().style.cursor = '';
-  });
-
   // popup
   map.on('click', 'car-fill', function (e) {
     var props = e.features[0].properties;
