@@ -2,12 +2,13 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2d1aWViIiwiYSI6ImNtbTc3ZDM1azBwZXAyeXB6YmdsbWR0bzQifQ.drU3rQYvOmXPEraVrmIW6Q';
 
 // Quintile breaks
-var breaks = [67.29, 84.57, 89.98, 94.90];
+var breaks = [19.29, 44.57, 50.98, 80.90];
 
 // Scale of Colors
 var colors = ['#E3BBFC', '#BF63F8', '#9B0BFB', '#63079C' , '#470570' ];
 
-var CAR_FIELD = 'Car_Ownership_Rate';
+var CAR_FIELD = 'Pct_No_Vehicle';
+
 
 let map = new mapboxgl.Map({
   container: 'map',
@@ -71,22 +72,20 @@ map.on('load', function () {
       props.NAMELSAD || props.NAME || props.TRACT_NAME || 'Census Tract';
 
     var rate = Number(props[CAR_FIELD]);
-    var noVehicle = Number(props['Pct_No_Vehicle']);
-    // var totalHH = Number(props['Total_Households']);
+    var totalHH = Number(props['Total_Households']);
     var noVehicleHH = Number(props['Households_No_Vehicle']);
 
+
     var rateText = isNaN(rate) ? 'N/A' : rate.toFixed(1) + '%';
-    var noVehicleText = isNaN(noVehicle) ? 'N/A' : noVehicle.toFixed(1) + '%';
-    // var totalText = isNaN(totalHH) ? 'N/A' : totalHH.toLocaleString();
+    var totalText = isNaN(totalHH) ? 'N/A' : totalHH.toLocaleString();
     var noVehicleHHText = isNaN(noVehicleHH) ? 'N/A' : noVehicleHH.toLocaleString();
 
     new mapboxgl.Popup()
       .setLngLat(e.lngLat)
       .setHTML(
         '<b>' + tractName + '</b><br>' +
-        'Car ownership rate: ' + rateText + '<br>' +
-        'No vehicle: ' + noVehicleText + '<br>' +
-        // 'Total households: ' + totalText + '<br>' +
+        'Car ownership pct zero vehicle: ' + rateText + '<br>' +
+        'Total households: ' + totalText + '<br>' +
         'Zero-vehicle households: ' + noVehicleHHText
       )
       .addTo(map);
