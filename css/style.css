@@ -6,50 +6,142 @@ body {
 
 #map {
   position: absolute;
-  top: 0;
+  top: 52px;
   bottom: 0;
   width: 100%;
+}
+
+/* mapbox zoom */
+.mapboxgl-ctrl-top-right {
+  top: 60px;
+}
+
+/* top bar */
+#topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+#topbar #title {
+  font-size: 30px;
+  font-weight: 500;
+  color: #1f2937;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+#topbar-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+}
+
+#topbar-links a {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151 !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.15s;
+}
+
+#topbar-links a:hover {
+  background: #e5e7eb;
+  color: #1f2937 !important;
 }
 
 /* sidebar */
 #info {
   z-index: 1000;
   position: absolute;
-  width: 320px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  padding: 30px 20px; 
-  background: #2b2b2b;
-  color: white;
-  overflow-y: auto; 
+  width: 300px;
+  top: 96px;
+  bottom: 16px;
+  left: 16px;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+#info .card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 0;
+}
+
+/* chart panel: hidden until tract is clicked */
+#chart-panel {
+  display: none;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 16px 18px;
+  color: #1f2937;
+}
+
+#chart-panel h5 {
+  margin: 0 0 10px 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
 }
 
 #info a {
-  color: lightgray;
+  color: #4b5563;
   text-decoration: none;
 }
 
 #info a:hover {
-  color: white;
+  color: #1f2937;
   opacity: 0.8;
 }
 
 #title {
-  font-size: 20px;
-  font-family: 'Inter', sans-serif;
-  margin-bottom: 25px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  line-height: 1.3;
 }
 
 #title span {
-  font-size: 14px;
+  font-size: 12px;
   float: right;
   margin-left: 10px;
 }
 
 #desc {
   text-align: center;
-  color: lightgray;
+  color: #4b5563;
   font-size: medium;
   font-weight: bold;
   margin-top: 20px;
@@ -63,29 +155,18 @@ body {
   font-size: 40px;
 }
 
-/* sidebar footer */
-#footer {
-  margin-top: 20px;
-}
-
-#footer p {
-  font-size: 13px;
-  line-height: 1.5;
-  color: lightgray;
-  margin-top: 20px;
-}
-
 /* legend */
-
 #legend {
   position: absolute;
   bottom: 30px;
   right: 30px;
-  background: #2b2b2b;
-  color: white;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1f2937;
   padding: 15px 18px;
   border-radius: 10px;
   width: 230px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
   font-family: 'Inter', sans-serif;
   z-index: 999;
 }
@@ -96,12 +177,22 @@ body {
   margin-bottom: 10px;
 }
 
+.legend-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
 .legend-row {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
-  font-size: 13px;
-  color: lightgray;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #1f2937;
 }
 
 .legend-swatch {
@@ -114,21 +205,8 @@ body {
 
 .legend-note {
   font-size: 12px;
-  color: lightgray;
+  color: #4b5563;
   margin-top: 10px;
-}
-
-/* map page footer */
-.footer {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  font-size: 12px;
-  color: #374151;
-  background: rgba(255, 255, 255, 0.88);
-  padding: 6px 10px;
-  border-radius: 6px;
-  z-index: 999;
 }
 
 /* popup */
@@ -154,8 +232,8 @@ body {
   padding: 10px 12px;
   border-radius: 8px;
   border: none;
-  background: #374151;
-  color: white;
+  background: #e5e7eb;
+  color: #1f2937;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   cursor: pointer;
@@ -163,18 +241,16 @@ body {
 }
 
 .reset-btn:hover {
-  background: #4b5563;
+  background: #d1d5db;
 }
 
 /* filters */
 #filters h5 { margin: 0 0 10px 0; }
-
 .filter-row { margin-bottom: 10px; }
-
 .filter-row label {
   display: block;
   font-size: 12px;
-  color: lightgray;
+  color: #4b5563;
   margin-bottom: 4px;
 }
 
@@ -183,8 +259,8 @@ body {
   padding: 8px 10px;
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.15);
-  background: #1f1f1f;
-  color: white;
+  background: #f9fafb;
+  color: #1f2937;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
 }
@@ -195,5 +271,72 @@ body {
   gap: 8px;
   margin: 8px 0 0 0;
   font-size: 13px;
-  color: lightgray;
+  color: #4b5563;
+}
+
+/* card sections */
+.card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 0;
+}
+.card h5 {
+  margin: 0 0 10px 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+
+/* KPI row */
+.kpi-row {
+  display: flex;
+  gap: 8px;
+}
+
+.kpi {
+  flex: 1;
+  background: white;
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.kpi .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+.kpi .value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* chart */
+#equity-chart {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}
+
+#equity-chart svg {
+  max-width: 100%;
+}
+
+.c3 text {
+  font-family: 'Inter', sans-serif;
+  fill: #6b7280;
+  font-size: 11px;
+}
+
+.c3-legend-item text {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  fill: #4b5563;
 }

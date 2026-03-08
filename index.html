@@ -29,77 +29,76 @@
 
 <body>
 
+    <!-- top bar -->
+    <div id="topbar">
+        <div id="title">Seattle Transit Equity Dashboard</div>
+        <div id="topbar-links">
+            <a href="about.html">About</a>
+            
+            <a href="https://github.com/sjg2202/transit-equity-dashboard" target="_blank">
+                <i class="bi bi-github"></i> GitHub
+            </a>
+        </div>
+    </div>
+
     <!-- sidebar -->
     <div id="info">
 
-        <div id="title">
-            Seattle Transit Equity Dashboard
-            <span>
-
-                <a href="about.html">About</a>
-
-                <a href="https://github.com/sjg2202/transit-equity-dashboard" target="_blank">
-                    <i class="bi bi-github"></i>
-                </a>
-
-            </span>
-        </div>
-
-        <!-- filters !update!!!!-->
+        <!-- filters -->
         <div class="card" id="filters">
-        <h5>Filters</h5>
-
-        <div class="filter-row">
-            <label for="layerSelect">Choropleth layer</label>
-            <select id="layerSelect">
-            <option value="income" selected>Median income</option>
-            <option value="car">% no vehicle</option>
-            <option value="stops">Stop density</option>
-            </select>
-        </div>
+        <h5>Layers</h5>
 
         <label class="checkbox-row">
-            <input type="checkbox" id="toggleStops" checked>
-            Show transit stops
+            <input type="checkbox" id="toggleIncome" checked>
+            Median income
         </label>
+
+        <label class="checkbox-row">
+            <input type="checkbox" id="toggleCar" checked>
+            % no vehicle
+        </label>
+
+        <label class="checkbox-row">
+            <input type="checkbox" id="toggleStopDensity" checked>
+            Stop density
+        </label>
+
        </div>
 
         <!-- KPI -->
         <div id="count" class="card">
-            <h5>Selected Census Tract Metrics</h5>
+            <h5>Selected Census Tract</h5>
 
             <div class="kpi-row">
 
                 <div class="kpi">
                     <div class="label">Transit Stops</div>
                     <div class="value">
-                        <span id="stop-count">0</span>
+                        <span id="stop-count">—</span>
                     </div>
                 </div>
 
                 <div class="kpi">
                     <div class="label">Median Income</div>
                     <div class="value">
-                        <span id="median-income">0</span>
+                        <span id="median-income">—</span>
                     </div>
                 </div>
 
                 <div class="kpi">
                     <div class="label">% No Vehicle</div>
                     <div class="value">
-                        <span id="pct-no-vehicle">0</span>
+                        <span id="pct-no-vehicle">—</span>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- chart -->
-        <div id="equity-chart"></div>
-
-        <!-- footer -->
-        <div id="footer">
-        Transit Equity Dashboard — Seattle | Data: King County Metro, ACS Census        
+        <!-- chart panel -->
+        <div id="chart-panel">
+            <h5>Transit Need by Tract</h5>
+            <div id="equity-chart"></div>
         </div>
 
     </div>
@@ -107,33 +106,17 @@
     <!-- map -->
     <div id="map"></div>
 
-    <!-- legend: update later!!!-->
+    <!-- legend -->
     <div id="legend">
 
-    <div class="legend-title">Legend</div>
+        <div class="legend-title">Legend</div>
+        <div id="legend-body"></div>
 
-    <div style="margin-bottom:6px;">Transit Layers</div>
+        <div style="margin-top:8px;color:#6b7280;font-size:11px;">
+            Census tract boundaries shown
+        </div>
 
-    <div class="legend-row">
-        <span class="legend-circle small"></span>
-        <span>Low</span>
-    </div>
-
-    <div class="legend-row">
-        <span class="legend-circle medium"></span>
-        <span>Medium</span>
-    </div>
-
-    <div class="legend-row">
-        <span class="legend-circle large"></span>
-        <span>High</span>
-    </div>
-
-    <div style="margin-top:8px;color:#6b7280;font-size:11px;">
-        Census tract boundaries shown
-    </div>
-
-    <button id="reset" class="reset-btn">Reset Map</button>
+        <button id="reset" class="reset-btn">Reset Map</button>
 
     </div>
 
