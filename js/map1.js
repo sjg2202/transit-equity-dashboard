@@ -23,18 +23,15 @@ map.on('load', () => {
     type: 'fill',
     source: 'transit-tracts',
     paint: {
-      'fill-color': [
-        'step',
-        ['get', 'transit_stop_count'],
-        '#f7fbff',       // 1–16
-        17, '#c6dbef',   // 17–23
-        24, '#6baed6',   // 24–28
-        29, '#3182bd',   // 29–35
-        36, '#2171b5',   // 36–47
-        48, '#1361a9',   // 48–64
-        65, '#0a4a8a',   // 65–99
-        100, '#08306b'   // 100–280
-      ],
+    'fill-color': [
+      'step',
+      ['get', 'transit_stop_count'],
+      '#f7fbff',        // 1–10
+      11, '#6baed6',    // 11–25
+      26, '#3182bd',    // 26–50
+      51, '#1361a9',    // 51–100
+      101, '#08306b'    // 101–280
+    ],
       'fill-opacity': 0.8
     }
   }, 'road-label-simple');
