@@ -57,7 +57,7 @@ body {
   border: 1px solid #e5e7eb;
   font-size: 15px;
   font-weight: 500;
-  color: #374151 !important;
+  color: #374151;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -67,7 +67,7 @@ body {
 
 #topbar-links a:hover {
   background: #e5e7eb;
-  color: #1f2937 !important;
+  color: #1f2937;
 }
 
 /* sidebar */
