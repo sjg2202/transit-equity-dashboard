@@ -151,6 +151,44 @@ function updateLegend() {
         `;
     }
 
+    if (document.getElementById('toggleCar').checked) {
+        html += `
+            <div class="legend-section-title" style="margin-top:10px;">% No Vehicle</div>
+
+            <div class="legend-row">
+                <span 
+                    class="legend-swatch" 
+                    style="background:#E3BBFC;">
+                </span>
+                <span>0% - 5%</span>
+            </div>
+
+            <div class="legend-row">
+                <span 
+                    class="legend-swatch" 
+                    style="background:#BF63F8;">
+                </span>
+                <span>6% - 30%</span>
+            </div>
+
+            <div class="legend-row">
+                <span 
+                    class="legend-swatch" 
+                    style="background:#9B0BFB;">
+                </span>
+                <span>31% - 49%</span>
+            </div>
+
+            <div class="legend-row">
+                <span 
+                    class="legend-swatch" 
+                    style="background:#63079C;">
+                </span>
+                <span>50% - 80.6%</span>
+            </div>
+        `;
+    }
+
     if (document.getElementById('toggleStopDensity').checked) {
         html += `
             <div class="legend-section-title" style="margin-top:10px;">Transit Stop Density</div>
