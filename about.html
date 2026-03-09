@@ -1,49 +1,506 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Seattle Transit Equity Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About – Seattle Transit Equity Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f3f4f6;
+      color: #1f2937;
+    }
 
-    <!-- Mapbox -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 80px;
+      background: #fafafa;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
 
-    <!-- icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    #topbar #title {
+      font-size: 30px;
+      font-weight: 500;
+      color: #1f2937;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
 
-    <!-- charts -->
-    <link rel="stylesheet" href="css/c3.min.css">
-    <script src="js/d3.js"></script>
-    <script src="js/c3.min.js"></script>
+    #topbar-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
 
-    <!-- custom styles -->
-    <link rel="stylesheet" href="css/style.css">
+    #topbar-links a {
+      padding: 10px 20px;
+      border-radius: 5px;
+      background: #fafafa;
+      border: 1px solid #e5e7eb;
+      font-size: 15px;
+      font-weight: 500;
+      color: #374151;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: 0.15s;
+    }
+
+    #topbar-links a:hover { background: #e5e7eb; color: #1f2937; }
+    #topbar-links a.active { background: #e5e7eb; color: #1f2937; }
+
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 110px 24px 60px;
+    }
+
+    .hero-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .hero-img-placeholder {
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #60a5fa;
+      border: 1px dashed #93c5fd;
+    }
+
+    .hero-img-placeholder p {
+      font-size: 12px;
+      color: #93c5fd;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .card h5 {
+      margin: 0 0 10px 0;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b7280;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #374151;
+      margin-bottom: 10px;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 18px 0; }
+
+    .layer-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+    .layer-item { display: flex; align-items: flex-start; gap: 12px; }
+
+    .layer-dot {
+      width: 12px; height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .layer-info .layer-name { font-size: 13px; font-weight: 600; color: #1f2937; }
+    .layer-info .layer-desc { font-size: 12px; color: #6b7280; line-height: 1.55; margin-top: 1px; }
+
+    .datasource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .datasource-item {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .datasource-item .ds-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-bottom: 3px;
+    }
+
+    .datasource-item .ds-name { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 3px; }
+    .datasource-item .ds-desc { font-size: 12px; color: #6b7280; line-height: 1.5; }
+
+    .tutorial-steps { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+    .tutorial-step { display: flex; gap: 14px; align-items: flex-start; }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: #1f2937;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-body .step-title { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
+    .step-body .step-desc { font-size: 13px; color: #6b7280; line-height: 1.55; }
+
+    .screenshot-placeholder {
+      width: 100%;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1px dashed #bae6fd;
+      aspect-ratio: 16/7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 18px;
+      color: #7dd3fc;
+    }
+
+    .screenshot-placeholder p { font-size: 12px; color: #93c5fd; }
+    .caption { font-size: 12px; color: #9ca3af; text-align: center; margin-top: 8px; font-style: italic; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .team-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .team-avatar {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      overflow: hidden;
+    }
+
+    .team-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .team-name { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
+    .team-role { font-size: 11px; color: #9ca3af; margin-bottom: 6px; line-height: 1.4; }
+    .team-email { font-size: 11px; color: #6b7280; word-break: break-all; }
+    .team-email a { color: #6b7280; text-decoration: none; }
+    .team-email a:hover { color: #1f2937; }
+
+    .ref-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+
+    .ref-item {
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.65;
+      padding-left: 20px;
+      text-indent: -20px;
+    }
+
+    .ref-item a { color: #3b82f6; }
+
+    @media (max-width: 640px) {
+      .hero-row { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- TOPBAR -->
-    <div id="topbar">
-        <div id="title">Seattle Transit Equity Dashboard</div>
-        <div id="topbar-links">
-            <a href="index.html"><i class="bi bi-map"></i> Map</a>
+<!-- TOPBAR -->
+<div id="topbar">
+  <div id="title">Seattle Transit Equity Dashboard</div>
+  <div id="topbar-links">
+    <a href="index.html"><i class="bi bi-map"></i> Map</a>
+    <a href="about.html" class="active">About</a>
+    <a href="https://github.com/sjg2202/transit-equity-dashboard" target="_blank">
+      <i class="bi bi-github"></i> GitHub
+    </a>
+  </div>
+</div>
 
-            <a href="about.html">About</a>
+<div class="page-wrap">
 
-            <a href="https://github.com/sjg2202/transit-equity-dashboard" target="_blank">
-                
-                <i class="bi bi-github"></i> GitHub
-            </a>
-        </div>
+  <!-- HERO ROW -->
+  <div class="hero-row">
+    <div class="hero-img-placeholder">
+      <!-- Replace with: <img src="img/hero.jpg" alt="Dashboard"> -->
+      <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503-9.498l4.875-2.437a.75.75 0 011.022.678V16.5a.75.75 0 01-.44.682l-4.875 2.25a.75.75 0 01-.622 0l-4.875-2.25a.75.75 0 01-.44-.682V8.678a.75.75 0 011.022-.678l4.875 2.437" />
+      </svg>
+      <p>Replace with a map photo<br><em>img/hero.jpg</em></p>
     </div>
-    
-</body>
 
+    <div>
+      <div class="card" style="margin-bottom:0;">
+        <h5>Project Summary</h5>
+        <h2>Seattle Transit Equity Dashboard</h2>
+        <p>
+          A geovisualization created by students at the University of Washington for GEOG 458. This dashboard explores the relationship between transit access, household income, and car ownership across Seattle's census tracts.
+        </p>
+        <p>
+          Using 2020 census boundaries and King County Metro data, it helps users identify <strong>transit deserts</strong>, neighborhoods where residents have limited access to public transit and face compounding barriers from low income or zero vehicle ownership.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND -->
+  <div class="card">
+    <h5>Background</h5>
+    <h2>Why Transit Equity Matters</h2>
+    <p>
+      Access to public transportation is a foundational aspect of urban equity. In Seattle, rapid population growth and rising housing costs have pushed lower-income residents into neighborhoods further from job centers and often underserved by the transit network.
+    </p>
+    <p>
+      This project examines three key dimensions of transit equity: the density of transit stops per census tract, median household income, and the percentage of households without a vehicle. Together, these layers reveal where residents are most dependent on yet least served by public transit.
+    </p>
+    <p>
+      By making these patterns visible in an interactive format, we hope to support more informed public conversations about transportation investment, housing policy, and equitable urban planning in Seattle and the broader King County region.
+    </p>
+  </div>
+
+  <!-- METHODOLOGY -->
+  <div class="card">
+    <h5>Methodology &amp; Data</h5>
+    <h2>How We Built This</h2>
+    <p>
+      The dashboard was built using <strong>Mapbox GL JS</strong> with three choropleth layers, each joined to 2020 Seattle census tract boundaries. Transit stop counts were computed via a spatial join between King County Metro stop point data and census tract polygons. Income and vehicle availability data came from the ACS 2024 5-Year Estimates.
+    </p>
+
+    <div class="layer-list">
+      <div class="layer-item">
+        <div class="layer-dot" style="background:#3182bd;"></div>
+        <div class="layer-info">
+          <div class="layer-name">Transit Stop Density</div>
+          <div class="layer-desc">Stop counts per tract via spatial join of King County Metro stops with 2020 census boundaries. Sequential blue ramp, 5 classification breaks.</div>
+        </div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-dot" style="background:#2ca25f;"></div>
+        <div class="layer-info">
+          <div class="layer-name">Median Household Income</div>
+          <div class="layer-desc">ACS 2024 5-Year Estimates, field B19013_001E. Classified using Natural Breaks (Jenks). Sequential green ramp across 5 classes.</div>
+        </div>
+      </div>
+      <div class="layer-item">
+        <div class="layer-dot" style="background:#9B0BFB;"></div>
+        <div class="layer-info">
+          <div class="layer-name">Car Ownership Rate</div>
+          <div class="layer-desc">ACS 2024 5-Year Estimates, percentage of zero-vehicle households (B08201). Purple sequential ramp to highlight transit dependency.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="datasource-grid">
+      <div class="datasource-item">
+        <div class="ds-label">Boundaries</div>
+        <div class="ds-name">2020 Census Tracts Seattle</div>
+        <div class="ds-desc">2020 Census Tracts from Seattle Open Data GIS, clipped to Seattle city limits.</div>
+      </div>
+      <div class="datasource-item">
+        <div class="ds-label">Transit</div>
+        <div class="ds-name">King County Metro Stops</div>
+        <div class="ds-desc">Point GeoJSON of all Metro bus and light rail stops in the study area.</div>
+      </div>
+      <div class="datasource-item">
+        <div class="ds-label">Demographics</div>
+        <div class="ds-name">ACS 5-Year Estimates</div>
+        <div class="ds-desc">2024 ACS data for income (B19013) and vehicle availability (B08201).</div>
+      </div>
+      <div class="datasource-item">
+        <div class="ds-label">Base Map</div>
+        <div class="ds-name">Mapbox light-v11</div>
+        <div class="ds-desc">Minimalist base style to keep thematic layers visually prominent.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TUTORIAL -->
+  <div class="card">
+    <h5>Tutorial</h5>
+    <h2>How to Use the Dashboard</h2>
+
+    <div class="tutorial-steps">
+      <div class="tutorial-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Toggle Layers On and Off</div>
+          <div class="step-desc">Use the checkboxes in the sidebar to turn the Income, Car Ownership, and Transit Stop Density layers on or off. The legend updates automatically to reflect active layers.</div>
+        </div>
+      </div>
+      <div class="tutorial-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Click a Census Tract</div>
+          <div class="step-desc">Click any census tract on the map to open a popup with tract-specific metrics: transit stop count, median household income, and the percentage of households with no vehicle available.</div>
+        </div>
+      </div>
+      <div class="tutorial-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">View KPI Cards &amp; Chart</div>
+          <div class="step-desc">After clicking a tract, the sidebar KPI cards and bar chart update to display that tract's equity indicators so you can quickly compare across neighborhoods.</div>
+        </div>
+      </div>
+      <div class="tutorial-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Zoom &amp; Pan</div>
+          <div class="step-desc">Use the zoom controls in the top-right or scroll to zoom in and out. Click and drag to pan across Seattle's neighborhoods.</div>
+        </div>
+      </div>
+      <div class="tutorial-step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Reset the Map</div>
+          <div class="step-desc">Click the Reset button in the sidebar to return to the default view, re-enable all layers, and clear any highlighted tracts or open popups.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screenshot-placeholder">
+      <!-- Replace with: <img src="img/tutorial.jpg" style="width:100%;border-radius:10px;" alt="Dashboard screenshot"> -->
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 19.5h18" />
+      </svg>
+      <p>Add a dashboard screenshot here -- img/tutorial.jpg</p>
+    </div>
+    <div class="caption">Overview of the Seattle Transit Equity Dashboard interface.</div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="card">
+    <h5>Our Team</h5>
+    <h2>Meet the Developers</h2>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <!-- <div class="team-avatar"><img src="img/katherine.jpg" alt=""></div> -->
+        <div class="team-avatar">👤</div>
+        <div class="team-name">Katherine Escoto Licona</div>
+        <div class="team-role">Geography: Data Science</div>
+        <div class="team-email"><a href="mailto:kescoto@uw.edu">kescoto@uw.edu</a></div>
+      </div>
+
+      <div class="team-card">
+        <!-- <div class="team-avatar"><img src="img/shayla.jpg" alt=""></div> -->
+        <div class="team-avatar">👤</div>
+        <div class="team-name">Shayla Guieb</div>
+        <div class="team-role">Geography: Data Science</div>
+        <div class="team-email"><a href="mailto:sguieb@uw.edu">sguieb@uw.edu</a></div>
+      </div>
+
+      <div class="team-card">
+        <!-- <div class="team-avatar"><img src="img/oscar.jpg" alt=""></div> -->
+        <div class="team-avatar">👤</div>
+        <div class="team-name">Oscar Castillo</div>
+        <div class="team-role">Geography: Data Science</div>
+        <div class="team-email"><a href="mailto:ocastillo@uw.edu">ocastillo@uw.edu</a></div>
+      </div>
+
+      <div class="team-card">
+        <!-- <div class="team-avatar"><img src="img/jiali.jpg" alt=""></div> -->
+        <div class="team-avatar">👤</div>
+        <div class="team-name">Jiali Deng</div>
+        <div class="team-role">Geography: Data Science</div>
+        <div class="team-email"><a href="mailto:jdeng137@uw.edu">jdeng137@uw.edu</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CREDITS & REFERENCES -->
+  <div class="card">
+    <h5>Credits &amp; References</h5>
+    <h2>Libraries &amp; Sources</h2>
+    <p>
+      Built using <strong>Mapbox GL JS v2.15</strong> for map rendering, <strong>C3.js</strong> and <strong>D3.js</strong> for charting, and <strong>Inter</strong> (Google Fonts) for typography. Census tract boundaries from Seattle Open Data GIS. Transit stop data from King County Metro's open data portal. The project is hosted on GitHub under an MIT license.
+    </p>
+
+    <hr>
+
+    <div class="ref-list">
+      <div class="ref-item">
+        [1] U.S. Census Bureau. (2024). <em>Household Size by Vehicles Available</em>. Table B08201. <a href="https://data.census.gov/table/ACSDT1Y2024.B08201?q=B08201:+Household+Size+by+Vehicles+Available" target="_blank">https://data.census.gov/table/ACSDT1Y2024.B08201?q=B08201:+Household+Size+by+Vehicles+Available</a>
+      </div>
+      <div class="ref-item">
+        [2] U.S. Census Bureau. (2024). <em>Estimated Median Household Income</em>. Table B19013. <a href="https://data.census.gov/table/ACSDT5Y2024.B19013?q=b19013&g=050XX00US53033%241400000&y=2024&moe=false" target="_blank">https://data.census.gov/table/ACSDT5Y2024.B19013?q=b19013&g=050XX00US53033%241400000&y=2024&moe=false</a>
+      </div>
+      <div class="ref-item">
+        [3] King County Metro. <em>Transit Stop Locations</em>. King County GIS Open Data. <a href="https://gis-kingcounty.opendata.arcgis.com/datasets/554131a77997491bb84114223da5511d/explore?location=47.560985%2C-122.042655%2C10" target="_blank">https://gis-kingcounty.opendata.arcgis.com/datasets/554131a77997491bb84114223da5511d/explore?location=47.560985%2C-122.042655%2C10</a>
+      </div>
+      <div class="ref-item">
+        [4] Seattle Open Data GIS. (2020). <em>2020 Census Tracts - Seattle</em>. <a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2020-census-tracts-seattle/explore?location=47.612038%2C-122.333403%2C11" target="_blank">https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2020-census-tracts-seattle/explore?location=47.612038%2C-122.333403%2C11</a>
+      </div>
+      <div class="ref-item">
+        [5] Mapbox. <em>Mapbox GL JS v2.15.0</em>. <a href="https://docs.mapbox.com/mapbox-gl-js/" target="_blank">docs.mapbox.com</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
 </html>
