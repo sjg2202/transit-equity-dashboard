@@ -471,7 +471,8 @@ document.getElementById('toggleCar').addEventListener('change', function () {
     if (!this.checked && map.getLayer('car-highlight')) {
         map.setFilter('car-highlight', ['==', 'GEOID20', '']);
     }
-
+    // Hides or shows the chart based on the checkbox
+    document.getElementById('equity-chart').style.display = this.checked ? 'block' : 'none';
     updateLegend();
 });
 
@@ -494,31 +495,72 @@ let chart = c3.generate({
     bindto: '#equity-chart',
     data: {
         columns: [
-            ['Low Need (<5% No Car)', 0],
-            ['Moderate Need (5-15%)', 0],
-            ['High Need (15-30%)', 0],
-            ['Critical Need (30%+)', 0] 
+            ['0 - 19.3%', 0],
+            ['19.3 - 44.6%', 0],
+            ['44.6 - 51.0%', 0],
+            ['51.0 - 80.9%', 0],
+            ['80.9%+', 0]
         ],
         type: 'bar', // type of bar chart
         colors: {
             // Matches the chart colors exactly to the map layer colors
             // Added # to all hex codes
-            'Low Need (<5% No Car)': '#f1eef6',
-            'Moderate Need (5-15%)': '#bdc9e1',
-            'High Need (15-30%)': '#74a9cf',
-            'Critical Need (30%+)': '#0570b0'
+            '0 - 19.3%': '#E3BBFC',
+            '19.3 - 44.6%': '#BF63F8',
+            '44.6 - 51.0%': '#9B0BFB',
+            '51.0 - 80.9%': '#8a8a8a',
+            '80.9%+': '#470570'
         }
     },
     axis: {
-        x: { show: false },   // hides bottom axis to save space
+        x: { 
+            show: false // Hides bottom text for bars to spread out cleanly.
+        },
         y: {
-            label: {
-                text: 'Number of Tracts',   // Labels the vertical axis
-                position: 'outer-middle'
+            label: { text: 'Number of Tracts', position: 'outer-middle' }
             }
-        }
     },
-    legend: {
-        position: 'bottom' // Moves chart key to the bottom
-    }
+    legend: { position: 'bottom' } // Moves chart key to the bottom
 });
+
+function updateChart() {
+    if (!map.getLayer('car-fill')) return;
+    // Queries the census tract currently visible on the screen
+    const features = map.queryRenderedFeatures({ layers: ['car-fill'] });
+
+    // 5 Quintile buckets
+    let b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0;
+
+    const uniqueTracts = new Set();
+
+    features.forEach(f => {
+        // Grab data
+        const tractID = f.properties.NAME || f.properties.GEOID20 || f.id;
+        if (!tractID || uniqueTracts.has(tractID)) return;
+        uniqueTracts.add(tractID);
+
+        // Extract data using CAR_FIELD variable
+        let pctNoCar = parseFloat(f.properties[CAR_FIELD]);
+
+        // 4. Sort into quintile buckets
+        if (!isNaN(pctNoCar)) {
+            if (pctNoCar < 19.29) b1++;
+            else if (pctNoCar < 44.57) b2++;
+            else if (pctNoCar < 50.98) b3++;
+            else if (pctNoCar < 80.90) b4++;
+            else b5++; 
+        }
+    });
+
+    // Funnel the live data to the chart
+    chart.load({
+        columns: [
+            ['0 - 19.3%', b1],
+            ['19.3 - 44.6%', b2],
+            ['44.6 - 51.0%', b3],
+            ['51.0 - 80.9%', b4],
+            ['80.9%+', b5]
+        ]
+    });
+}
+map.on('idle', updateChart);
