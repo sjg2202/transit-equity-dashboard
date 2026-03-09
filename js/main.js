@@ -151,110 +151,33 @@ function updateLegend() {
         `;
     }
 
-    if (document.getElementById('toggleCar').checked) {
-        html += `
-            <div class="legend-section-title" style="margin-top:10px;">% No Vehicle</div>
-
-            <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#E3BBFC;">
-                </span>
-                <span>0% - 5%</span>
-            </div>
-
-            <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#BF63F8;">
-                </span>
-                <span>6% - 30%</span>
-            </div>
-
-            <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#9B0BFB;">
-                </span>
-                <span>31% - 49%</span>
-            </div>
-
-            <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#63079C;">
-                </span>
-                <span>50% - 80.6%</span>
-            </div>
-        `;
-    }
-
     if (document.getElementById('toggleStopDensity').checked) {
         html += `
             <div class="legend-section-title" style="margin-top:10px;">Transit Stop Density</div>
-
+    
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#f7fbff;">
-                </span>
-                <span>1 - 16 stops</span>
+                <span class="legend-swatch" style="background:#f7fbff;"></span>
+                <span>1 – 10 stops</span>
             </div>
-
+    
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#c6dbef;">
-                </span>
-                <span>17 - 23 stops</span>
+                <span class="legend-swatch" style="background:#6baed6;"></span>
+                <span>11 – 25 stops</span>
             </div>
-
+    
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#6baed6;">
-                </span>
-                <span>24 - 28 stops</span>
+                <span class="legend-swatch" style="background:#3182bd;"></span>
+                <span>26 – 50 stops</span>
             </div>
-
+    
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#3182bd;">
-                </span>
-                <span>29 - 35 stops</span>
+                <span class="legend-swatch" style="background:#1361a9;"></span>
+                <span>51 – 100 stops</span>
             </div>
-
+    
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#2171b5;">
-                </span>
-                <span>36 - 47 stops</span>
-            </div>
-
-            <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#1361a9;">
-                </span>
-                <span>48 - 64 stops</span>
-            </div>
-
-            <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#0a4a8a;">
-                </span>
-                <span>65 - 99 stops</span>
-            </div>
-
-            <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#08306b;">
-                </span>
-                <span>100 - 280 stops</span>
+                <span class="legend-swatch" style="background:#08306b;"></span>
+                <span>101 – 280 stops</span>
             </div>
         `;
     }
@@ -344,17 +267,14 @@ map.on('load', () => {
         type: 'fill',
         source: 'transit-tracts',
         paint: {
-            'fill-color': [
-                'step', ['get', 'transit_stop_count'],
-                '#f7fbff',
-                17, '#c6dbef',
-                24, '#6baed6',
-                29, '#3182bd',
-                36, '#2171b5',
-                48, '#1361a9',
-                65, '#0a4a8a',
-                100, '#08306b'
-            ],
+        'fill-color': [
+            'step', ['get', 'transit_stop_count'],
+            '#f7fbff',
+            11, '#6baed6',
+            26, '#3182bd',
+            51, '#1361a9',
+            101, '#08306b'
+        ],
             'fill-opacity': 0.5
         }
     }, 'road-label-simple');
