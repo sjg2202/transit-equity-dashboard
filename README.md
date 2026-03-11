@@ -1,6 +1,6 @@
 # Seattle Transit Equity Dashboard
 
-## AI Disclosure: We used AI to join both the datasets used for map stop density and the third map being no vehicle
+## AI Disclosure: We used AI to join both the datasets used for map stop density and the third map being no vehicle with census tract
 
 ### By: Katherine Escoto Licona, Shayla Guieb, Oscar Castillo, Jiali Deng
 
