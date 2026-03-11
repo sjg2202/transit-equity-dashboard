@@ -8,320 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f3f4f6;
-      color: #1f2937;
-    }
-
-    #topbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 80px;
-      background: #fafafa;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      z-index: 1001;
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      justify-content: space-between;
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-    }
-
-    #topbar #title {
-      font-size: 30px;
-      font-weight: 500;
-      color: #1f2937;
-      margin: 0;
-      letter-spacing: -0.01em;
-    }
-
-    #topbar-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    #topbar-links a {
-      padding: 10px 20px;
-      border-radius: 5px;
-      background: #fafafa;
-      border: 1px solid #e5e7eb;
-      font-size: 15px;
-      font-weight: 500;
-      color: #374151;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: 0.15s;
-    }
-
-    #topbar-links a:hover { background: #e5e7eb; color: #1f2937; }
-    #topbar-links a.active { background: #e5e7eb; color: #1f2937; }
-
-    .page-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 110px 24px 60px;
-    }
-
-    .hero-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 20px;
-    }
-
-    .hero-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 12px;
-    }
-
-    .card {
-      background: #f9fafb;
-      border-radius: 12px;
-      padding: 22px 24px;
-      margin-bottom: 20px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .card h5 {
-      margin: 0 0 10px 0;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #6b7280;
-    }
-
-    .card h2 {
-      font-size: 18px;
-      font-weight: 600;
-      color: #1f2937;
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      font-size: 14px;
-      line-height: 1.75;
-      color: #374151;
-      margin-bottom: 10px;
-    }
-
-    .card p:last-child { margin-bottom: 0; }
-
-    hr { border: none; border-top: 1px solid #e5e7eb; margin: 18px 0; }
-
-    .definition-box {
-      background: #eff6ff;
-      border-left: 3px solid #3b82f6;
-      border-radius: 0 8px 8px 0;
-      padding: 14px 16px;
-      margin-top: 14px;
-    }
-
-    .definition-box .def-term {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #3b82f6;
-      margin-bottom: 4px;
-    }
-
-    .definition-box .def-text {
-      font-size: 13px;
-      color: #1e3a5f;
-      line-height: 1.65;
-    }
-
-    .layer-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
-    .layer-item { display: flex; align-items: flex-start; gap: 12px; }
-
-    .layer-dot {
-      width: 12px; height: 12px;
-      border-radius: 3px;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-
-    .layer-info .layer-name { font-size: 13px; font-weight: 600; color: #1f2937; }
-    .layer-info .layer-desc { font-size: 12px; color: #6b7280; line-height: 1.55; margin-top: 1px; }
-
-    .method-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .method-img {
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid #e5e7eb;
-    }
-
-    .method-img img {
-      width: 100%;
-      display: block;
-    }
-
-    .method-img-caption {
-      font-size: 11px;
-      color: #6b7280;
-      padding: 8px 10px;
-      background: #ffffff;
-      font-style: italic;
-    }
-
-    .datasource-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .datasource-item {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 12px 14px;
-    }
-
-    .datasource-item .ds-label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      margin-bottom: 3px;
-    }
-
-    .datasource-item .ds-name { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 3px; }
-    .datasource-item .ds-desc { font-size: 12px; color: #6b7280; line-height: 1.5; }
-
-    .tutorial-steps { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
-    .tutorial-step { display: flex; gap: 14px; align-items: flex-start; }
-
-    .step-num {
-      flex-shrink: 0;
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      background: #1f2937;
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .step-body .step-title { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
-    .step-body .step-desc { font-size: 13px; color: #6b7280; line-height: 1.55; }
-
-    .tutorial-screenshot {
-      width: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 18px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .tutorial-screenshot img { width: 100%; display: block; border-radius: 10px; }
-
-    .caption { font-size: 12px; color: #9ca3af; text-align: center; margin-top: 8px; font-style: italic; }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .team-card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 16px 14px;
-      text-align: center;
-    }
-
-    .team-avatar {
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-      margin: 0 auto 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      overflow: hidden;
-    }
-
-    .team-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-    .team-name { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
-    .team-role { font-size: 11px; color: #9ca3af; margin-bottom: 4px; line-height: 1.4; }
-    .team-contrib { font-size: 11px; color: #6b7280; line-height: 1.4; margin-bottom: 6px; font-style: italic; }
-    .team-email { font-size: 11px; color: #6b7280; word-break: break-all; }
-    .team-email a { color: #6b7280; text-decoration: none; }
-    .team-email a:hover { color: #1f2937; }
-
-    /* ack without avatars */
-    .ack-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .ack-card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 14px 16px;
-    }
-
-    .ack-info .ack-name { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
-    .ack-info .ack-role { font-size: 11px; color: #9ca3af; }
-
-    .ref-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-
-    .ref-item {
-      font-size: 13px;
-      color: #4b5563;
-      line-height: 1.65;
-      padding-left: 20px;
-      text-indent: -20px;
-    }
-
-    .ref-item a { color: #3b82f6; }
-
-    @media (max-width: 640px) {
-      .hero-row { grid-template-columns: 1fr; }
-      .team-grid { grid-template-columns: repeat(2, 1fr); }
-      .method-grid { grid-template-columns: 1fr; }
-      .ack-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -498,6 +185,11 @@
       </div>
     </div>
 
+    <div class="tutorial-screenshot">
+      <img src="img/screenshot-dashboard-1.jpg" alt="Overview of the Seattle Transit Equity Dashboard">
+    </div>
+    <div class="caption">Overview of the Seattle Transit Equity Dashboard interface.</div>
+
     <div class="tutorial-screenshot" style="margin-top: 14px;">
       <img src="img/screenshot-dashboard-chart.jpg" alt="Dashboard with Charts">
     </div>
@@ -514,32 +206,34 @@
         <div class="team-avatar"><img src="img/katherine.jpg" alt="Katherine"></div>
         <div class="team-name">Katherine Escoto Licona</div>
         <div class="team-role">Geography: Data Science</div>
-        <div class="team-contrib">Basemap, car ownership layer, readme formatting</div>
-        <div class="team-email"><a href="mailto:sguieb@uw.edu">shaylaguieb4@gmail.com</a></div>
+        <div class="team-contrib">Car ownership layer, data processing, layout</div>
+        <div class="team-email"><a href="/cdn-cgi/l/email-protection#442f2a2128760431336a212031"><span class="__cf_email__" data-cfemail="056e6b6069374570722b606170">[email&#160;protected]</span></a></div>
       </div>
 
       <div class="team-card">
         <div class="team-avatar"><img src="img/shayla.jpg" alt="Shayla"></div>
         <div class="team-name">Shayla Guieb</div>
         <div class="team-role">Geography: Data Science</div>
-        <div class="team-contrib">Median income layer, dashboard implementation, index finalizations </div>
-        <div class="team-email"><a href="mailto:sguieb@uw.edu">shaylaguieb4@gmail.com</a></div>
+        <div class="team-contrib">Transit stop density layer, map interactions, styling</div>
+        <div class="team-email"><a href="/cdn-cgi/l/email-protection#b9cad1d8c0d5d8deccd0dcdb8df9ded4d8d0d597dad6d4"><span class="__cf_email__" data-cfemail="c4b7aca5bda8a5a3b1ada1a6f084a3a9a5ada8eaa7aba9">[email&#160;protected]</span></a></div>
       </div>
 
       <div class="team-card">
-        <div class="team-avatar"><img src="img/Oscar.jpg" alt="Oscar"></div>
+        <!-- <div class="team-avatar"><img src="img/oscar.jpg" alt="Oscar"></div> -->
+        <div class="team-avatar">👤</div>
         <div class="team-name">Oscar Castillo</div>
         <div class="team-role">Geography: Data Science</div>
-        <div class="team-contrib">Chart Implementation, UI synchronization, spatial data cleaning & joins </div>
-        <div class="team-email"><a href="mailto:ocasti1217@gmail.com">ocasti@uw.edu</a></div>
+        <div class="team-contrib">Income layer, GEOID data joins, data cleaning</div>
+        <div class="team-email"><a href="/cdn-cgi/l/email-protection#bdd2dedccec9d4d1d1d2fdc8ca93d8d9c8"><span class="__cf_email__" data-cfemail="a8c7cbc9dbdcc1c4c4c7e8dddf86cdccdd">[email&#160;protected]</span></a></div>
       </div>
 
       <div class="team-card">
-        <div class="team-avatar"><img src="img/jiali.jpg" alt="Jiali"></div>
+        <!-- <div class="team-avatar"><img src="img/jiali.jpg" alt="Jiali"></div> -->
+        <div class="team-avatar">👤</div>
         <div class="team-name">Jiali Deng</div>
         <div class="team-role">Geography: Data Science</div>
-        <div class="team-contrib">Transit stop density layer, about page, styling</div>
-        <div class="team-email"><a href="mailto:jdeng137@uw.edu">jdeng137@uw.edu</a></div>
+        <div class="team-contrib">Chart implementation, KPI panel, sidebar design</div>
+        <div class="team-email"><a href="/cdn-cgi/l/email-protection#95fff1f0fbf2a4a6a2d5e0e2bbf0f1e0"><span class="__cf_email__" data-cfemail="96fcf2f3f8f1a7a5a1d6e3e1b8f3f2e3">[email&#160;protected]</span></a></div>
       </div>
 
     </div>
@@ -586,8 +280,4 @@
         [3] King County Metro. <em>Transit Stop Locations</em>. King County GIS Open Data. <a href="https://gis-kingcounty.opendata.arcgis.com/datasets/554131a77997491bb84114223da5511d/explore?location=47.560985%2C-122.042655%2C10" target="_blank">https://gis-kingcounty.opendata.arcgis.com/datasets/554131a77997491bb84114223da5511d/explore?location=47.560985%2C-122.042655%2C10</a>
       </div>
       <div class="ref-item">
-        [4] Seattle Open Data GIS. (2020). <em>2020 Census Tracts - Seattle</em>. <a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2020-census-tracts-seattle/explore?location=47.612038%2C-122.333403%2C11" target="_blank">https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2020-census-tracts-seattle/explore?location=47.612038%2C-122.333403%2C11</a>
-      </div>
-      <div class="ref-item">
-        [5] Mapbox. <em>Mapbox GL JS v2.15.0</em>. <a href="https://docs.mapbox.com/mapbox-gl-js/" target="_blank">docs.mapbox.com</a>
-      </div>
+        [4] Seattle Open Data GIS. (2020). <em>2020 Census Tracts - Seattle</em>. <a href="https://data-seattlecitygis.opendata.arcgis.com/data
