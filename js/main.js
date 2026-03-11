@@ -156,35 +156,28 @@ function updateLegend() {
             <div class="legend-section-title" style="margin-top:10px;">% No Vehicle</div>
 
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#E3BBFC;">
-                </span>
-                <span>0% - 5%</span>
+                <span class="legend-swatch" style="background:#E3BBFC;"></span>
+                <span>0 - 19.3%</span>
             </div>
 
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#BF63F8;">
-                </span>
-                <span>6% - 30%</span>
+                <span class="legend-swatch" style="background:#BF63F8;"></span>
+                <span>19.3 - 44.6%</span>
             </div>
 
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#9B0BFB;">
-                </span>
-                <span>31% - 49%</span>
+                <span class="legend-swatch" style="background:#9B0BFB;"></span>
+                <span>44.6 - 51.0%</span>
             </div>
 
             <div class="legend-row">
-                <span 
-                    class="legend-swatch" 
-                    style="background:#63079C;">
-                </span>
-                <span>50% - 80.6%</span>
+                <span class="legend-swatch" style="background:#8a8a8a;"></span>
+                <span>51.0 - 80.9%</span>
+            </div>
+
+            <div class="legend-row">
+                <span class="legend-swatch" style="background:#470570;"></span>
+                <span>80.9%+</span>
             </div>
         `;
     }
