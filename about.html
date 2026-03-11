@@ -77,29 +77,23 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      align-items: start;
+      align-items: stretch;
       margin-bottom: 20px;
     }
 
-    .hero-img-placeholder {
+    .hero-img {
       width: 100%;
+      height: 100%;
       border-radius: 12px;
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: #60a5fa;
-      border: 1px dashed #93c5fd;
+      overflow: hidden;
     }
 
-    .hero-img-placeholder p {
-      font-size: 12px;
-      color: #93c5fd;
-      text-align: center;
-      padding: 0 16px;
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
     }
 
     .card {
@@ -137,6 +131,29 @@
 
     hr { border: none; border-top: 1px solid #e5e7eb; margin: 18px 0; }
 
+    .definition-box {
+      background: #eff6ff;
+      border-left: 3px solid #3b82f6;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+
+    .definition-box .def-term {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #3b82f6;
+      margin-bottom: 4px;
+    }
+
+    .definition-box .def-text {
+      font-size: 13px;
+      color: #1e3a5f;
+      line-height: 1.65;
+    }
+
     .layer-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
     .layer-item { display: flex; align-items: flex-start; gap: 12px; }
 
@@ -149,6 +166,32 @@
 
     .layer-info .layer-name { font-size: 13px; font-weight: 600; color: #1f2937; }
     .layer-info .layer-desc { font-size: 12px; color: #6b7280; line-height: 1.55; margin-top: 1px; }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .method-img {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    .method-img img {
+      width: 100%;
+      display: block;
+    }
+
+    .method-img-caption {
+      font-size: 11px;
+      color: #6b7280;
+      padding: 8px 10px;
+      background: #ffffff;
+      font-style: italic;
+    }
 
     .datasource-grid {
       display: grid;
@@ -195,22 +238,16 @@
     .step-body .step-title { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
     .step-body .step-desc { font-size: 13px; color: #6b7280; line-height: 1.55; }
 
-    .screenshot-placeholder {
+    .tutorial-screenshot {
       width: 100%;
       border-radius: 10px;
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      border: 1px dashed #bae6fd;
-      aspect-ratio: 16/7;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      overflow: hidden;
       margin-top: 18px;
-      color: #7dd3fc;
+      border: 1px solid #e5e7eb;
     }
 
-    .screenshot-placeholder p { font-size: 12px; color: #93c5fd; }
+    .tutorial-screenshot img { width: 100%; display: block; border-radius: 10px; }
+
     .caption { font-size: 12px; color: #9ca3af; text-align: center; margin-top: 8px; font-style: italic; }
 
     .team-grid {
@@ -242,10 +279,29 @@
 
     .team-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
     .team-name { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
-    .team-role { font-size: 11px; color: #9ca3af; margin-bottom: 6px; line-height: 1.4; }
+    .team-role { font-size: 11px; color: #9ca3af; margin-bottom: 4px; line-height: 1.4; }
+    .team-contrib { font-size: 11px; color: #6b7280; line-height: 1.4; margin-bottom: 6px; font-style: italic; }
     .team-email { font-size: 11px; color: #6b7280; word-break: break-all; }
     .team-email a { color: #6b7280; text-decoration: none; }
     .team-email a:hover { color: #1f2937; }
+
+    /* ack without avatars */
+    .ack-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .ack-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .ack-info .ack-name { font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
+    .ack-info .ack-role { font-size: 11px; color: #9ca3af; }
 
     .ref-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
 
@@ -262,6 +318,8 @@
     @media (max-width: 640px) {
       .hero-row { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .method-grid { grid-template-columns: 1fr; }
+      .ack-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -283,12 +341,8 @@
 
   <!-- HERO ROW -->
   <div class="hero-row">
-    <div class="hero-img-placeholder">
-      <!-- <img width= "100%"  src="img/" alt="Dashboard"> -->
-      <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503-9.498l4.875-2.437a.75.75 0 011.022.678V16.5a.75.75 0 01-.44.682l-4.875 2.25a.75.75 0 01-.622 0l-4.875-2.25a.75.75 0 01-.44-.682V8.678a.75.75 0 011.022-.678l4.875 2.437" />
-      </svg>
-      <p>Replace with a map photo<br><em>img/map-preview.jpg</em></p>
+    <div class="hero-img">
+      <img src="img/about_bus_img.webp" alt="Seattle transit">
     </div>
 
     <div>
@@ -305,7 +359,7 @@
     </div>
   </div>
 
-  <!-- BACKGROUND -->
+  <!-- BACKGROUND + DEFINITIONS -->
   <div class="card">
     <h5>Background</h5>
     <h2>Why Transit Equity Matters</h2>
@@ -318,6 +372,13 @@
     <p>
       By making these patterns visible in an interactive format, we hope to support more informed public conversations about transportation investment, housing policy, and equitable urban planning in Seattle and the broader King County region.
     </p>
+
+    <div class="definition-box">
+      <div class="def-term">Key Definition: Transit Desert</div>
+      <div class="def-text">
+        A <strong>transit desert</strong> is a geographic area where the supply of public transit service is insufficient relative to the demand, particularly among populations with limited transportation alternatives. In this dashboard, transit deserts are identified by cross-referencing low transit stop density with high rates of zero-vehicle households and lower median household incomes, highlighting where transit need is greatest and service is lacking.
+      </div>
+    </div>
   </div>
 
   <!-- METHODOLOGY -->
@@ -327,6 +388,22 @@
     <p>
       The dashboard was built using <strong>Mapbox GL JS</strong> with three choropleth layers, each joined to 2020 Seattle census tract boundaries. Transit stop counts were computed via a spatial join between King County Metro stop point data and census tract polygons. Income and vehicle availability data came from the ACS 2024 5-Year Estimates.
     </p>
+    <p>
+      To prepare the demographic data, King County ACS data for median income and vehicle access were cleaned and joined to census tract boundaries using the GEOID field, ensuring consistent alignment across all three layers. AI was used to assist with joining the census tract GeoJSON with transit stop points, and separately with household size by vehicles available data.
+    </p>
+
+    <div class="method-grid">
+      <div class="method-img">
+        <img src="img/about_median_income_img.png" alt="Joining median income data to census tracts via GEOID">
+        <div class="method-img-caption">Joining median income data to census tracts via GEOID in King County.</div>
+      </div>
+      <div class="method-img">
+        <img src="img/about_vehicle_access_img.png" alt="Cleaning vehicle access data and joining via GEOID">
+        <div class="method-img-caption">Cleaning vehicle access data and joining to census tracts via GEOID.</div>
+      </div>
+    </div>
+
+    <hr>
 
     <div class="layer-list">
       <div class="layer-item">
@@ -388,21 +465,21 @@
         <div class="step-num">1</div>
         <div class="step-body">
           <div class="step-title">Toggle Layers On and Off</div>
-          <div class="step-desc">Use the checkboxes in the sidebar to turn the Income, Car Ownership, and Transit Stop Density layers on or off. The legend updates automatically to reflect active layers.</div>
+          <div class="step-desc">Use the checkboxes in the sidebar to turn the Income, Car Ownership, and Transit Stop Density layers on or off independently. The legend on the right updates automatically to reflect which layers are active.</div>
         </div>
       </div>
       <div class="tutorial-step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <div class="step-title">Click a Census Tract</div>
-          <div class="step-desc">Click any census tract on the map to open a popup with tract-specific metrics: transit stop count, median household income, and the percentage of households with no vehicle available.</div>
+          <div class="step-title">Zoom In to a Census Tract</div>
+          <div class="step-desc">Zoom into the map to get a closer look at individual census tracts. Clicking on a tract will populate the sidebar on the left with that tract's transit stop count, median household income, and percentage of households with no vehicle.</div>
         </div>
       </div>
       <div class="tutorial-step">
         <div class="step-num">3</div>
         <div class="step-body">
-          <div class="step-title">View KPI Cards &amp; Chart</div>
-          <div class="step-desc">After clicking a tract, the sidebar KPI cards and bar chart update to display that tract's equity indicators so you can quickly compare across neighborhoods.</div>
+          <div class="step-title">View the Chart</div>
+          <div class="step-desc">The transit need by tract chart only updates when you fully zoom in to a specific census tract. Clicking on a tract without fully zooming in will show the range of transit need across all tracts rather than the selected tract's specific data.</div>
         </div>
       </div>
       <div class="tutorial-step">
@@ -421,14 +498,10 @@
       </div>
     </div>
 
-    <div class="screenshot-placeholder">
-      <img src="img/tutorial.jpg" style="width:100%;border-radius:10px;" alt="Dashboard screenshot">
-      <!-- <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 19.5h18" />
-      </svg> -->
-      <!-- <p>Add a dashboard screenshot here -- img/tutorial.jpg</p> -->
+    <div class="tutorial-screenshot" style="margin-top: 14px;">
+      <img src="img/screenshot-dashboard-chart.jpg" alt="Dashboard with Charts">
     </div>
-    <div class="caption">Overview of the Seattle Transit Equity Dashboard interface.</div>
+    <div class="caption">When using the map you need to fully zoom in to a census tract to populate the chart with that specific tract's transit need. Clicking on a tract without fully zooming in will show the range of transit need across all tracts. You can also toggle on what layer you want to focus such as Median Income, % No Vehicle and Stop Density. The map also populates on the left hand side the number of transit stops, median income and % no vehicle.</div>
   </div>
 
   <!-- TEAM -->
@@ -438,35 +511,59 @@
     <div class="team-grid">
 
       <div class="team-card">
-        <div class="team-avatar"><img src="img/katherine.jpg" alt=""></div>
+        <div class="team-avatar"><img src="img/katherine.jpg" alt="Katherine"></div>
         <div class="team-name">Katherine Escoto Licona</div>
         <div class="team-role">Geography: Data Science</div>
-        <div class="team-email"><a href="mailto:knel2@uw.edu">knel2@uw.edu</a></div>
+        <div class="team-contrib">Car ownership layer, data processing, layout</div>
+        div class="team-email"><a href="mailto:sguieb@uw.edu">shaylaguieb4@gmail.com</a></div>
       </div>
 
       <div class="team-card">
-        <div class="team-avatar"><img src="img/shayla.jpg" alt=""></div>
+        <div class="team-avatar"><img src="img/shayla.jpg" alt="Shayla"></div>
         <div class="team-name">Shayla Guieb</div>
         <div class="team-role">Geography: Data Science</div>
+        <div class="team-contrib">Transit stop density layer, map interactions, styling</div>
         <div class="team-email"><a href="mailto:sguieb@uw.edu">shaylaguieb4@gmail.com</a></div>
       </div>
 
       <div class="team-card">
-        <!-- <div class="team-avatar"><img src="img/oscar.jpg" alt=""></div> -->
+        <!-- <div class="team-avatar"><img src="img/oscar.jpg" alt="Oscar"></div> -->
         <div class="team-avatar">👤</div>
         <div class="team-name">Oscar Castillo</div>
         <div class="team-role">Geography: Data Science</div>
+        <div class="team-contrib">Income layer, GEOID data joins, data cleaning</div>
         <div class="team-email"><a href="mailto:ocastillo@uw.edu">ocastillo@uw.edu</a></div>
       </div>
 
       <div class="team-card">
-        <!-- <div class="team-avatar"><img src="img/jiali.jpg" alt=""></div> -->
+        <!-- <div class="team-avatar"><img src="img/jiali.jpg" alt="Jiali"></div> -->
         <div class="team-avatar">👤</div>
         <div class="team-name">Jiali Deng</div>
         <div class="team-role">Geography: Data Science</div>
+        <div class="team-contrib">Chart implementation, KPI panel, sidebar design</div>
         <div class="team-email"><a href="mailto:jdeng137@uw.edu">jdeng137@uw.edu</a></div>
       </div>
 
+    </div>
+
+    <hr>
+
+    <h2 style="margin-top: 4px;">Acknowledgements</h2>
+    <p style="margin-top: 10px; margin-bottom: 14px;">We would like to thank our course instructor and teaching assistant for their guidance and feedback throughout this project.</p>
+
+    <div class="ack-grid">
+      <div class="ack-card">
+        <div class="ack-info">
+          <div class="ack-name">Dr. Bo Zhao</div>
+          <div class="ack-role">Course Instructor, GEOG 458</div>
+        </div>
+      </div>
+      <div class="ack-card">
+        <div class="ack-info">
+          <div class="ack-name">Liz Peng</div>
+          <div class="ack-role">Teaching Assistant, GEOG 458</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -491,14 +588,4 @@
         [3] King County Metro. <em>Transit Stop Locations</em>. King County GIS Open Data. <a href="https://gis-kingcounty.opendata.arcgis.com/datasets/554131a77997491bb84114223da5511d/explore?location=47.560985%2C-122.042655%2C10" target="_blank">https://gis-kingcounty.opendata.arcgis.com/datasets/554131a77997491bb84114223da5511d/explore?location=47.560985%2C-122.042655%2C10</a>
       </div>
       <div class="ref-item">
-        [4] Seattle Open Data GIS. (2020). <em>2020 Census Tracts - Seattle</em>. <a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2020-census-tracts-seattle/explore?location=47.612038%2C-122.333403%2C11" target="_blank">https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2020-census-tracts-seattle/explore?location=47.612038%2C-122.333403%2C11</a>
-      </div>
-      <div class="ref-item">
-        [5] Mapbox. <em>Mapbox GL JS v2.15.0</em>. <a href="https://docs.mapbox.com/mapbox-gl-js/" target="_blank">docs.mapbox.com</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-</body>
-</html>
+        [4] Seattle Open Data GIS. (2020). <em>2020 Census Tracts - Seattle</em>. <a href="https://data-seattlecitygis.opendata.arcgis.com/data
